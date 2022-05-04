@@ -1417,8 +1417,14 @@ func discount() {
 // awards
 
 // # workshop: function
-// problem: https://go.dev/play/p/4ZjXRHIHq8P
-// solution 1: https://go.dev/play/p/xH-DRimb2dx
+// problem: https://go.dev/play/p/Lpl1dtmHbXn
+	// กำหนด: 1.สร้างฟังก์ชันชื่อ emote และรับพารามิเตอร์หนึ่งตัวชื่อ ratings เป็นตัวแปรชนิด float64 และคืนค่าเป็น string
+	// 	   ถ้า ratings มีค่าน้อยกว่า 5.0 จะทำการคืนค่าคำว่า "Disappointed 😞"
+	// 	   ถ้า ratings มีค่ามากกว่าหรือเท่ากับ 5.0 และน้อยกว่า 7.0 จะทำการคืนค่าคำว่า "Normal 😐"
+	// 	   ถ้า ratings มีค่ามากกว่าหรือเท่ากับ 7.0 และน้อยกว่า 10.0 จะทำการคืนค่าคำว่า "Good 🥰"
+	//  	   กรณีอื่นๆ ให้ทำการคืนค่าคำว่า "🤷🤷🤷🤷"
+
+// solution 1: https://go.dev/play/p/b8QAB5cJVlc
 
 
 // # array
@@ -4443,6 +4449,8 @@ func (c course) info() {
 // go run main.go
 // Output:
 
+// TODO: # project : library public to github
+
 // TODO: # type convertion : number -> number
 
 // go run main.go
@@ -4533,6 +4541,92 @@ func main() {
 
 // go run main.go
 // Output:
+
+// TODO: simple api in go
+-- main.go --
+package main
+
+import (
+	"fmt"
+	"log"
+	"net/http"
+)
+
+func moviesHandler(w http.ResponseWriter, req *http.Request) {
+	method := "GET"
+	fmt.Fprintf(w, "hello %s movies", method)
+}
+
+func main() {
+	http.HandleFunc("/movies", moviesHandler)
+
+	log.Fatal(http.ListenAndServe("localhost:2565", nil))
+}
+
+-- main.go --
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"log"
+	"net/http"
+)
+
+type Movie struct {
+	ImdbID      string   `json:"imdbID"`
+	Title       string   `json:"title"`
+	Year        int      `json:"year"`
+	Rating      float32  `json:"rating"`
+	Genres      []string `json:"genres"`
+	IsSuperHero bool     `json:"isSuperHero"`
+}
+
+var movies []Movie
+
+func moviesHandler(w http.ResponseWriter, req *http.Request) {
+
+	if req.Method == "POST" {
+		body, err := ioutil.ReadAll(req.Body)
+		if err != nil {
+			fmt.Fprintf(w, "error : %v", err)
+			return
+		}
+
+		t := Movie{}
+		err = json.Unmarshal(body, &t)
+		if err != nil {
+			fmt.Fprintf(w, "error: ", err)
+			return
+		}
+
+		movies = append(movies, t)
+		fmt.Printf("% #v\n", movies)
+
+		fmt.Fprintf(w, "hello %s created movies", "POST")
+		return
+	}
+
+	if req.Method == "GET" {
+		b, err := json.Marshal(movies)
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			fmt.Fprintf(w, "error: ", err)
+			return
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		w.Write(b)
+	}
+}
+
+func main() {
+	http.HandleFunc("/movies", moviesHandler)
+
+	log.Fatal(http.ListenAndServe(":2565", nil))
+}
+
 
 // TODO: # rest api : GET /mmm
 
