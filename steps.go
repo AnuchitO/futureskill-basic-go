@@ -1416,6 +1416,8 @@ func discount() {
 // Ticket Movie
 // awards
 
+// TODO: # defer function 
+
 // # workshop: function
 // problem: https://go.dev/play/p/Lpl1dtmHbXn
 	// กำหนด: 1.สร้างฟังก์ชันชื่อ emote และรับพารามิเตอร์หนึ่งตัวชื่อ ratings เป็นตัวแปรชนิด float64 และคืนค่าเป็น string
@@ -4448,6 +4450,8 @@ func (c course) info() {
 
 // go run main.go
 // Output:
+
+// TODO: init function
 
 // TODO: # project : library public to github
 
