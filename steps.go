@@ -4579,7 +4579,6 @@ type Movie struct {
 	Title       string   `json:"title"`
 	Year        int      `json:"year"`
 	Rating      float32  `json:"rating"`
-	Genres      []string `json:"genres"`
 	IsSuperHero bool     `json:"isSuperHero"`
 }
 

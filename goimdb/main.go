@@ -11,12 +11,11 @@ import (
 )
 
 type Movie struct {
-	ImdbID      string   `json:"imdbID"`
-	Title       string   `json:"title"`
-	Year        int      `json:"year"`
-	Rating      float32  `json:"rating"`
-	Genres      []string `json:"genres"`
-	IsSuperHero bool     `json:"isSuperHero"`
+	ImdbID      string  `json:"imdbID"`
+	Title       string  `json:"title"`
+	Year        int     `json:"year"`
+	Rating      float32 `json:"rating"`
+	IsSuperHero bool    `json:"isSuperHero"`
 }
 
 var movies = []Movie{
@@ -25,7 +24,6 @@ var movies = []Movie{
 		Title:       "Avengers: Endgame",
 		Year:        2019,
 		Rating:      8.4,
-		Genres:      []string{"Action", "Drama"},
 		IsSuperHero: true,
 	},
 }
