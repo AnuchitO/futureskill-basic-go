@@ -3,6 +3,12 @@
 - ชื่อคอร์ส: ภาษา Go พื้นฐาน (basic go programming) #golang
 - ชื่อผู้สอน: หน่อง อนุชิโตะ (AnuchitO) โปรแกรมเมอร์สายลำซิ่ง
 
+# วิธีการติดตั้ง
+- [ติดตั้ง go บน macOS](https://youtu.be/meRLQ6wRbo8)
+- [ติดตั้ง go บน windows](https://youtu.be/COQChTe2IDo)
+- [ติดตั้ง vscode บน Windows](https://youtu.be/VbRELZgyZqU)
+
+
 ## บทเรียน
 
 - การประกาศตัวแปร
